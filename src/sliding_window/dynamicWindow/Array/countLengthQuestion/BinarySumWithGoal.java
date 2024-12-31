@@ -1,4 +1,4 @@
-package sliding_window.dynamicWindow.Array;
+package sliding_window.dynamicWindow.Array.countLengthQuestion;
 
 public class BinarySumWithGoal {
     public static int numSubarraysWithSum(int[] nums, int goal) {
