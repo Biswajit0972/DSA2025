@@ -20,4 +20,4 @@
 > 
 > Logic is simple. just generate this key and put all the string that are anagram of  `key`. return it 
 > 
-[my code Link🔗](src/NewYear2025/Geeks/GroupOfAnagram.java)
+[my code Link🔗](Geeks/GroupOfAnagram.java)
