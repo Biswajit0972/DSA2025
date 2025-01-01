@@ -28,8 +28,8 @@ public class GroupOfAnagram {
             res.add(group.get(key));
         }
 
-        for (int i = 0; i < res.size(); i++) {
-            System.out.println(res.get(i));
+        for (ArrayList<String> re : res) {
+            System.out.println(re);
         }
         return res;
     }
