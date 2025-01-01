@@ -8,7 +8,7 @@
 1. Be a Good thinker.
 2. Be a Good Engineer.
 3. Be a constant on goal.
-4. Enjoying tech world.
+4. Enjoying tech world
 5. Fixing the issues, that i create previous year.
 -----------------
 
