@@ -1,38 +1,23 @@
-# 2025 roadmap to goo archive my dream.
 
-## Dream company
-1. Microsoft
-2. Google
-3. Amazon
-4. Alsatians
-5. TCS
-6. StartUps
-7. Samsung
+# ➡️ Day2 of learning recursion and my some thought process 💀
 
-### software Engineer
-1. swe
-2. SWE2
-3. 35 LPA
+I am  starting my Learning Linkedlist journey from yesterday. Today I  learnt some fundamental things in linked-list. which are created own linked-list class , insertion , deletion , traversal and reverse a linked-list.
 
-![img.png](img.png)
+📂 I am was fool because i just thought theory is not important, but when was created my own linked-list class, theory and fundamentals are seriously helped  me a lot.
 
-## ABout GOOGLE
-1. Android 
-2. GCP
-3. Pixel
-4. more
+🐒 If you want master any data-structure then first focus on fundamental and theory. this is for today🐒
 
-# Entry 
-1. on Campus  💀
-2. Resumse ->  Good C>GPA
-3. CP -> OA
+💡 #leetcode #DSA #LinkedList #notes #coding #java #progrmmingwithme
 
-![img_1.png](img_1.png)
-![img_2.png](img_2.png)
-![img_3.png](img_3.png)
-------------------
-# OFF Campus
-1. code forces
-2. code sheaf
+# ➡️ Day3 of learning recursion and my some thought process 💀
 
-![img_4.png](img_4.png)
+🛜 Today I am excited to share my linked-list learning process with us. 🧨 Today I have done some  questions i mentioned below:
+
+1. Reverse a linked-list using recursion.🏷️
+2. Detect cycle in linked-list.🧨
+3. IsCycle exist and calculate nodes from the  loop.
+4. Arrange oddAndEvenList.
+
+Today I am so tired, I can't explain the hole process today, so stay  stuned for next day.
+
+💡 #leetcode #DSA #LinkedList #notes #coding #java #progrmmingwithme

@@ -24,10 +24,11 @@ Variable sized window, we start window size from  0 and go further util, a certa
 --------
 
 # Problems are started !
-## 3. Longest Substring Without Repeating Characters
+## 3. Longest Substring Without Repeating Characters 
 #### Brute force
 1. Generate all the substring and check is changes possible o r not.
 Disclaimer 👽:
    1. don't touch max frequency because it is easy to change small people rather than a lot of  people.
 ### Optimized using variable window.
 1. Every time we need to check minimum  changes,  If the minimum change is greater of minimumKth change. we need to reduce the window to  validate the certain condition.
+[link](./dynamicWindow/String/LongestStringLengthWithMinimalChanges.java)
