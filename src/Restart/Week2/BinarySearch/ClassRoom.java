@@ -138,7 +138,7 @@ public class ClassRoom {
         return Math.max(Math.max(diameterLeft, diameterRight), selfDiameter);
     }
 
-    public static boolean isValid (Node e1, Node e2) {
+    public static boolean isValid(Node e1, Node e2) {
         if (e1 == null) {
             return false;
         }
@@ -152,7 +152,7 @@ public class ClassRoom {
         return isValid(e1.leftChild, e2) || isValid(e1.rightChild, e2);
     }
 
-    public static boolean isIdentical  (Node e1, Node   e2) {
+    public static boolean isIdentical(Node e1, Node e2) {
         if (e1 == null && e2 == null) {
             return true;
         } else if (e1 == null || e2 == null || e1.data != e2.data) {
@@ -169,31 +169,32 @@ public class ClassRoom {
         return true;
     }
 
-    static class  info {
+    static class info {
         Node e1;
         int vd;
 
-        public info (Node e1, int vd) {
+        public info(Node e1, int vd) {
             this.e1 = e1;
             this.vd = vd;
         }
     }
-     public static void TopLevelView (Node root) {
+
+    public static void TopLevelView(Node root) {
         HashMap<Integer, Integer> tc = new HashMap<>();
         Queue<info> q = new LinkedList<>();
-        int min = 0, max= 0;
+        int min = 0, max = 0;
         q.add(new info(root, 0));
         q.add(null);
 
         while (!q.isEmpty()) {
             info remove = q.remove();
             if (remove == null) {
-                if (q.isEmpty()){
+                if (q.isEmpty()) {
                     break;
-                }else{
+                } else {
                     q.add(null);
                 }
-            }else {
+            } else {
 //                if (!tc.containsKey(remove.vd)) {
 //                    tc.put(remove.vd, remove.e1.data); // it is used top level view
 //                }
@@ -201,11 +202,11 @@ public class ClassRoom {
 
                 if (remove.e1.leftChild != null) {
                     q.add(new info(remove.e1.leftChild, remove.vd - 1));
-                    min = Math.min(min, remove.vd-1);
+                    min = Math.min(min, remove.vd - 1);
                 }
                 if (remove.e1.rightChild != null) {
                     q.add(new info(remove.e1.rightChild, remove.vd + 1));
-                    max = Math.max(max, remove.vd+1);
+                    max = Math.max(max, remove.vd + 1);
                 }
             }
         }
@@ -215,28 +216,67 @@ public class ClassRoom {
         }
     }
 
-    public static void printKthLevel (Node root, int k) {
+    public static void printKthLevel(Node root, int k) {
         kthLevelHelper(root, k, 1);
     }
 
-    public static void kthLevelHelper (Node root, int k, int i) {
+    public static void kthLevelHelper(Node root, int k, int i) {
         if (i == k) {
             System.out.println(root.data);
             return;
         }
 
         // kaam
-        kthLevelHelper(root.leftChild, k, i+1);
-        kthLevelHelper(root.rightChild, k, i+1);
+        kthLevelHelper(root.leftChild, k, i + 1);
+        kthLevelHelper(root.rightChild, k, i + 1);
     }
-    public static void main(String[] args) {
-        int[] arr = {1, 2, 4, -1, -1, 5, -1, -1, 3, 7,-1,-1, 6, -1, -1};
-        int [] arr2 = {2, 4, -1,-1, 5, -1,-1};
-        Node e1 = createBinaryTree(arr);
-        Node e2 = new Node(2);
-        e2.leftChild = new Node(4);
-        e2.rightChild = new Node(5);
 
-printKthLevel(e1, 3);
+
+    public static int minDistance(Node e1, Node root) {
+        if (root == null) {
+            return -1;
+        }
+
+        if (root.data == e1.data) {
+            return 0;
+        }
+
+        int leftSubtree = minDistance(e1, root.leftChild);
+        int rightSubtree = minDistance(e1, root.rightChild);
+
+        if (leftSubtree == -1) {
+            return rightSubtree + 1;
+        }
+
+        if (rightSubtree == -1) {
+            return leftSubtree + 1;
+        }
+
+        return -1;
+    }
+
+
+    public static int helperSum(Node root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int leftSub = helperSum(root.leftChild);
+        int rightSub = helperSum(root
+                .rightChild);
+
+        int temp = root.data;
+        int sum = leftSub + rightSub;
+        root.data = sum;
+        return sum + temp;
+    }
+
+
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 4, -1, -1, 5, -1, -1, 3, 7, -1, -1, 6, -1, -1};
+        Node e1 = createBinaryTree(arr);
+        int s = helperSum(e1);
+        System.out.println(Integer.MIN_VALUE);
     }
 }
