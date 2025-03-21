@@ -1,5 +1,6 @@
 package Restart.Week2.BinarySearch;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -169,7 +170,7 @@ public class ClassRoom {
         return true;
     }
 
-    static class info {
+     static class info {
         Node e1;
         int vd;
 
@@ -271,12 +272,51 @@ public class ClassRoom {
         return sum + temp;
     }
 
+    static int min = Integer.MAX_VALUE;
+    static int max = Integer.MIN_VALUE;
+
+    public static ArrayList<Integer> topViewExperiment (Node root) {
+        ArrayList<Integer> res = new ArrayList<>();
+
+        HashMap<Integer, Integer> lt = new HashMap<>();
+        ExperimentHelper(root, lt, 0);
+        for (int i = min; i <= max; i++) {
+            res.add(lt.get(i));
+        }
+        return res;
+    }
+
+    public static void ExperimentHelper (Node root, HashMap<Integer, Integer> res, int index) {
+        // base
+        if (root == null) {
+            return;
+        }
+//         kaam
+        if (res.containsKey(index)) {
+            if (root.leftChild == null && root.rightChild == null) {
+                res.put(index, root.data);
+            }
+        }
+
+        if (!res.containsKey(index)) {
+            res.put(index, root.data);
+        }
 
 
-    public static void main(String[] args) {
-        int[] arr = {1, 2, 4, -1, -1, 5, -1, -1, 3, 7, -1, -1, 6, -1, -1};
+
+        ExperimentHelper(root.leftChild, res, index - 1);
+        min = Math.min(min, index);
+        ExperimentHelper(root.rightChild, res, index+1);
+        max =  Math.max(max,  index);
+
+    }
+     public static void main(String[] args) {
+        int[] arr = {20, 8, 5, -1, -1, 3, 10, -1,-1, 14, -1, -1, 22, 4,-1,-1, 25, -1,-1};
         Node e1 = createBinaryTree(arr);
-        int s = helperSum(e1);
-        System.out.println(Integer.MIN_VALUE);
+       ArrayList<Integer> ls = new ArrayList<>( topViewExperiment(e1));
+       for (Integer n : ls) {
+           System.out.print(n+ " ");
+       }
+
     }
 }
