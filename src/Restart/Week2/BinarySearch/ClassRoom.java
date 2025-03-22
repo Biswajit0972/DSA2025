@@ -1,9 +1,6 @@
 package Restart.Week2.BinarySearch;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class ClassRoom {
     static class Node {
@@ -310,13 +307,88 @@ public class ClassRoom {
         max =  Math.max(max,  index);
 
     }
-     public static void main(String[] args) {
-        int[] arr = {20, 8, 5, -1, -1, 3, 10, -1,-1, 14, -1, -1, 22, 4,-1,-1, 25, -1,-1};
-        Node e1 = createBinaryTree(arr);
-       ArrayList<Integer> ls = new ArrayList<>( topViewExperiment(e1));
-       for (Integer n : ls) {
-           System.out.print(n+ " ");
-       }
 
+    public static ArrayList<Integer> leftSideView (Node root) {
+        ArrayList<Integer> result = new ArrayList<>();
+        // edge case
+        if (root == null) {
+            return result;
+        }
+//   recursive solution  lsHelper(root, result,0);
+
+        Queue<Node>  q = new LinkedList<>();
+        q.add(root);
+
+        while  (!q.isEmpty()) {
+            int n = q.size();
+            for (int i = 0; i < n; i++) {
+               // remove node
+                Node temp = q.poll();
+                if (temp == null) {
+                    break;
+                }
+
+                if (i == 0) {
+                    result.add(temp.data);
+                }
+
+                if (temp.leftChild !=   null) {
+                    q.add(temp.leftChild);
+                }
+
+                if (temp.rightChild !=   null) {
+                    q.add(temp.rightChild);
+                }
+            }
+        }
+        return result;
+    }
+
+    public static void lsHelper (Node root , ArrayList<Integer> res, int index) {
+        if (root == null) {
+            return;
+        }
+
+        if (index == res.size()) {
+            res.add(root.data);
+        }
+
+        lsHelper(root.leftChild, res, index + 1);
+        lsHelper(root.rightChild, res, index + 1);
+    }
+
+    public static void myCode (Node root) {
+        HashMap<Integer, List<Integer>> db = new HashMap<>();
+        verticalHelper(root, db, 0);
+        for (int i = min; i <= max; i++){
+            System.out.println(db.get(i).toString());
+        }
+    }
+
+    public static void verticalHelper (Node root, HashMap<Integer, List<Integer>> db, int index) {
+        // base
+        if (root == null) {
+            return;
+        }
+
+        // check levels
+        if (db.containsKey(index)) {
+            db.get(index).add(root.data);
+            Collections.sort(db.get(index));
+        }else {
+            List<Integer> temp = new ArrayList<>();
+            temp.add(root.data);
+            db.put(index,  temp);
+        }
+
+        verticalHelper(root.leftChild, db, index-1);
+        min = Math.min(min, index);
+        verticalHelper(root.rightChild, db, index+1);
+        max  =  Math.max(max, index);
+    }
+     public static void main(String[] args) {
+        int[] arr = {1,2,4,-1,-1,6,-1,-1,3,5,-1,-1,7,-1,-1};
+        Node e1 = createBinaryTree(arr);
+        myCode(e1);
     }
 }
