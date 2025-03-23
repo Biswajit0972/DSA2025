@@ -167,7 +167,7 @@ public class ClassRoom {
         return true;
     }
 
-     static class info {
+    static class info {
         Node e1;
         int vd;
 
@@ -272,7 +272,7 @@ public class ClassRoom {
     static int min = Integer.MAX_VALUE;
     static int max = Integer.MIN_VALUE;
 
-    public static ArrayList<Integer> topViewExperiment (Node root) {
+    public static ArrayList<Integer> topViewExperiment(Node root) {
         ArrayList<Integer> res = new ArrayList<>();
 
         HashMap<Integer, Integer> lt = new HashMap<>();
@@ -283,7 +283,7 @@ public class ClassRoom {
         return res;
     }
 
-    public static void ExperimentHelper (Node root, HashMap<Integer, Integer> res, int index) {
+    public static void ExperimentHelper(Node root, HashMap<Integer, Integer> res, int index) {
         // base
         if (root == null) {
             return;
@@ -300,15 +300,14 @@ public class ClassRoom {
         }
 
 
-
         ExperimentHelper(root.leftChild, res, index - 1);
         min = Math.min(min, index);
-        ExperimentHelper(root.rightChild, res, index+1);
-        max =  Math.max(max,  index);
+        ExperimentHelper(root.rightChild, res, index + 1);
+        max = Math.max(max, index);
 
     }
 
-    public static ArrayList<Integer> leftSideView (Node root) {
+    public static ArrayList<Integer> leftSideView(Node root) {
         ArrayList<Integer> result = new ArrayList<>();
         // edge case
         if (root == null) {
@@ -316,13 +315,13 @@ public class ClassRoom {
         }
 //   recursive solution  lsHelper(root, result,0);
 
-        Queue<Node>  q = new LinkedList<>();
+        Queue<Node> q = new LinkedList<>();
         q.add(root);
 
-        while  (!q.isEmpty()) {
+        while (!q.isEmpty()) {
             int n = q.size();
             for (int i = 0; i < n; i++) {
-               // remove node
+                // remove node
                 Node temp = q.poll();
                 if (temp == null) {
                     break;
@@ -332,11 +331,11 @@ public class ClassRoom {
                     result.add(temp.data);
                 }
 
-                if (temp.leftChild !=   null) {
+                if (temp.leftChild != null) {
                     q.add(temp.leftChild);
                 }
 
-                if (temp.rightChild !=   null) {
+                if (temp.rightChild != null) {
                     q.add(temp.rightChild);
                 }
             }
@@ -344,7 +343,7 @@ public class ClassRoom {
         return result;
     }
 
-    public static void lsHelper (Node root , ArrayList<Integer> res, int index) {
+    public static void lsHelper(Node root, ArrayList<Integer> res, int index) {
         if (root == null) {
             return;
         }
@@ -357,15 +356,15 @@ public class ClassRoom {
         lsHelper(root.rightChild, res, index + 1);
     }
 
-    public static void myCode (Node root) {
+    public static void myCode(Node root) {
         HashMap<Integer, List<Integer>> db = new HashMap<>();
         verticalHelper(root, db, 0);
-        for (int i = min; i <= max; i++){
+        for (int i = min; i <= max; i++) {
             System.out.println(db.get(i).toString());
         }
     }
 
-    public static void verticalHelper (Node root, HashMap<Integer, List<Integer>> db, int index) {
+    public static void verticalHelper(Node root, HashMap<Integer, List<Integer>> db, int index) {
         // base
         if (root == null) {
             return;
@@ -375,20 +374,54 @@ public class ClassRoom {
         if (db.containsKey(index)) {
             db.get(index).add(root.data);
             Collections.sort(db.get(index));
-        }else {
+        } else {
             List<Integer> temp = new ArrayList<>();
             temp.add(root.data);
-            db.put(index,  temp);
+            db.put(index, temp);
         }
 
-        verticalHelper(root.leftChild, db, index-1);
+        verticalHelper(root.leftChild, db, index - 1);
         min = Math.min(min, index);
-        verticalHelper(root.rightChild, db, index+1);
-        max  =  Math.max(max, index);
+        verticalHelper(root.rightChild, db, index + 1);
+        max = Math.max(max, index);
     }
-     public static void main(String[] args) {
-        int[] arr = {1,2,4,-1,-1,6,-1,-1,3,5,-1,-1,7,-1,-1};
+
+    public static ArrayList<ArrayList<Integer>> Paths(Node root) {
+        // code here
+        ArrayList<ArrayList<Integer>> result  = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+
+        ArrayList<Integer> temp = new ArrayList<>();
+        PathsHelper(root, temp, result);
+        return result;
+    }
+
+    public static void PathsHelper(Node root, ArrayList<Integer> temp, ArrayList<ArrayList<Integer>> res) {
+       if (root == null) {
+           return;
+       }
+
+       temp.add(root.data);
+
+       if (root.leftChild == null && root.rightChild == null) {
+           res.add(new ArrayList<>(temp));
+       }else{
+           PathsHelper(root.leftChild, temp, res);
+           PathsHelper(root.rightChild, temp, res);
+       }
+
+       temp.remove(temp.size()  - 1);
+    }
+
+    public static void main(String[] args) {
+//        int[] arr = {1, 2, 4, -1, -1, 6, -1, -1, 3, 5, -1, -1, 7, -1, -1};
+        int [] arr = {1, 2, -1, -1, 3, -1,-1};
         Node e1 = createBinaryTree(arr);
-        myCode(e1);
+        ArrayList<ArrayList<Integer>> nums = new ArrayList<>(Paths(e1));
+        for (ArrayList<Integer> num: nums) {
+            System.out.println(num);
+        }
     }
 }
