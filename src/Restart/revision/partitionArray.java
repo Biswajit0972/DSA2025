@@ -1,8 +1,15 @@
 package Restart.revision;
+import Oop.*;
+import Oop.QuickRevision.Practice;
 
 import java.util.Arrays;
 
 public class partitionArray {
+    static class Ex extends Practice.Car {
+        public void print () {
+            System.out.println(brand);
+        }
+    }
     public static int [] partition (int [] nums, int pivot) {
         int n = nums.length;
         int[] result = new int[n];
